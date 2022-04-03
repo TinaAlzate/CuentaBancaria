@@ -9,7 +9,7 @@ import java.util.Date;
   */
 public class cuenta
 {    
-   private int edadcliente;
+   private String direccion;
    private Date fechadecreacion;
    private String nombredelcliente;
    private String numerodecuenta;
@@ -28,15 +28,15 @@ public class cuenta
       this.nombredelcliente = nombredelcliente;
       this.numerodecuenta = numerodecuenta;
       this.saldo = saldo; 
-      edadcliente = 52;
+      direccion = "Riera blanca 191";
     }
     /**
      * Edad cliente
      * @return Este "get" retorna la edad del cliente
      */
-    public int getedadcliente()
+    public String getdireccion()
     {
-        return edadcliente;
+        return direccion;
     }
     /**
      * Fecha creación
@@ -108,14 +108,18 @@ public class cuenta
    * @param numcuenta Este parametro hace referencia a la cuenta desde la que se hara la tranferencia.
    * @throws exceptuacion La exceptuacion se dispara cuenta la cantidad a tranferir es mayor al saldo que tiene la cuenta desde la que se va a transferir.
    */
-  public void transferencia (double transferir, cuenta numcuenta) throws exceptuacion
+  public boolean transferencia (double transferir, cuenta numcuenta) throws exceptuacion
   {
       if (transferir < saldo) {
          ingresardinero(transferir);
          numcuenta.reintegro(transferir);
+         return true;
       }
-      else
-        throw new exceptuacion ("Saldo insuficiente");
+      else{
+          return false;
+      }
+          
+        
   }
 }       
         
